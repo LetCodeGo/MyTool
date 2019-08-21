@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{92EC5F3E-94B4-499D-BA02-6B4E5C2F7E64}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>MyTool</RootNamespace>
+    <AssemblyName>MyTool</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\Tool.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BencodeNET, Version=2.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\BencodeNET.2.3.0\lib\net45\BencodeNET.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AbortIgnoreDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbortIgnoreDialog.Designer.cs" />
+    <Compile Include="CommonFunction.cs" />
+    <Compile Include="ComparedRenameControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ComparedRenameControl.Designer.cs" />
+    <Compile Include="ComparedRenameSetting.cs" />
+    <Compile Include="FileMatchRule.cs" />
+    <Compile Include="FileMatchSetting.cs" />
+    <Compile Include="FileMatchSettingControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FileMatchSettingControl.Designer.cs" />
+    <Compile Include="FileOrFolderRenameControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FileOrFolderRenameControl.Designer.cs" />
+    <Compile Include="FileOrFolderRenameSetting.cs" />
+    <Compile Include="GetEncoding.cs" />
+    <Compile Include="GetFileOrFolder.cs" />
+    <Compile Include="Helper.cs" />
+    <Compile Include="LogForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LogForm.Designer.cs" />
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs" />
+    <Compile Include="ManagerComboBoxItemDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManagerComboBoxItemDialog.Designer.cs" />
+    <Compile Include="MediaInfoDLL.cs" />
+    <Compile Include="OtherToolControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OtherToolControl.Designer.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SavePresetDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SavePresetDialog.Designer.cs" />
+    <Compile Include="Setting.cs" />
+    <Compile Include="StartWithSystem.cs" />
+    <Compile Include="TableControlEx.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TextEncodingSelectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TextEncodingSelectForm.Designer.cs" />
+    <Compile Include="TextProcessControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TextProcessControl.Designer.cs" />
+    <Compile Include="Win32API.cs" />
+    <EmbeddedResource Include="AbortIgnoreDialog.resx" />
+    <EmbeddedResource Include="ComparedRenameControl.resx" />
+    <EmbeddedResource Include="FileMatchSettingControl.resx" />
+    <EmbeddedResource Include="FileOrFolderRenameControl.resx" />
+    <EmbeddedResource Include="LogForm.resx" />
+    <EmbeddedResource Include="MainForm.resx" />
+    <EmbeddedResource Include="ManagerComboBoxItemDialog.resx" />
+    <EmbeddedResource Include="OtherToolControl.resx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="SavePresetDialog.resx" />
+    <EmbeddedResource Include="TextEncodingSelectForm.resx" />
+    <EmbeddedResource Include="TextProcessControl.resx" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tool.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ArrowRight.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="IWshRuntimeLibrary">
+      <Guid>{F935DC20-1CF0-11D0-ADB9-00C04FD58A0B}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>if "$(ConfigurationName)" == "Release" (
+xcopy "$(TargetPath)" "C:\Users\zhang\Desktop\tools\MyTool\" /y)</PostBuildEvent>
+  </PropertyGroup>
+</Project>
