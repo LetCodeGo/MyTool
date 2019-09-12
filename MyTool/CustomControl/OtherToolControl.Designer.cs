@@ -155,7 +155,7 @@
             this.btnTorrent.Name = "btnTorrent";
             this.btnTorrent.Size = new System.Drawing.Size(156, 40);
             this.btnTorrent.TabIndex = 34;
-            this.btnTorrent.Text = "torrent文件处理";
+            this.btnTorrent.Text = "其他";
             this.btnTorrent.UseVisualStyleBackColor = true;
             this.btnTorrent.Click += new System.EventHandler(this.btnTorrent_Click);
             this.btnTorrent.DragDrop += new System.Windows.Forms.DragEventHandler(this.btnTorrent_DragDrop);

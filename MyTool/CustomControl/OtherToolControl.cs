@@ -18,8 +18,6 @@ namespace MyTool
         public OtherToolControl()
         {
             InitializeComponent();
-
-            this.btnTorrent.Visible = false;
         }
 
         private void btnCompletedBluRayFolder_Click(object sender, EventArgs e)
@@ -409,21 +407,24 @@ namespace MyTool
         {
             if (e.Data.GetDataPresent("FileDrop"))
             {
+                string strlog = "";
                 string[] strFiles = e.Data.GetData("FileDrop") as string[];
                 foreach (string strPath in strFiles)
                 {
-                    if (File.Exists(strPath) && strPath.ToLower().EndsWith(".torrent"))
+                    string[] s1 = Directory.GetDirectories(strPath);
+                    foreach (string s2 in s1)
                     {
-                        e.Effect = DragDropEffects.Link;
-                        return;
+                        string[] s3 = Directory.GetDirectories(s2);
+                        if (s3.Length > 0) strlog += (s2 + '\n');
                     }
                 }
+                Helper.OpenEdit(strlog);
             }
         }
 
         private void btnTorrent_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("请把torrent文件拖到此处！");
+            MessageBox.Show("拖到此处！");
         }
     }
 }

@@ -41,7 +41,7 @@ namespace MyTool
 
             string[] pageNames = new string[] {
                 "对比重命名", "重命名",
-                "文本处理", "其他", "文件匹配设置" };
+                "文本处理", "字符串处理", "其他", "文件匹配设置" };
 
             foreach (string pageName in pageNames)
             {
@@ -63,6 +63,9 @@ namespace MyTool
                         break;
                     case "文本处理":
                         cl = new TextProcessControl();
+                        break;
+                    case "字符串处理":
+                        cl = new QRCodeControl();
                         break;
                     case "其他":
                         cl = new OtherToolControl();
