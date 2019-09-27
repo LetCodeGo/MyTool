@@ -8,51 +8,82 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using QRCoder;
+using System.Text.RegularExpressions;
 
 namespace MyTool
 {
     public partial class QRCodeControl : UserControl
     {
-        public QRCodeControl()
+        private Action CheckBoxTopMostNoChecked = null;
+        private Action CheckBoxTopMostRestoreChecked = null;
+
+        public QRCodeControl(
+            Action CheckBoxTopMostNoChecked, Action CheckBoxTopMostRestoreChecked)
         {
             InitializeComponent();
-            this.pictureBox.ContextMenuStrip = this.contextMenuStrip;
+
+            this.CheckBoxTopMostNoChecked = CheckBoxTopMostNoChecked;
+            this.CheckBoxTopMostRestoreChecked = CheckBoxTopMostRestoreChecked;
         }
 
         private void BtnToUp_Click(object sender, EventArgs e)
         {
-            this.textBox.Text = this.textBox.Text.ToUpper();
+            this.textBoxStringInput.Text = this.textBoxStringInput.Text.ToUpper();
         }
 
         private void BtnToLow_Click(object sender, EventArgs e)
         {
-            this.textBox.Text = this.textBox.Text.ToLower();
+            this.textBoxStringInput.Text = this.textBoxStringInput.Text.ToLower();
         }
 
         private void BtnFirstCharUp_Click(object sender, EventArgs e)
         {
-            this.textBox.Text = System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(this.textBox.Text);
+            this.textBoxStringInput.Text =
+                System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(
+                    this.textBoxStringInput.Text);
         }
 
-        private void BtnToQRCode_Click(object sender, EventArgs e)
+        private void BtnMergeBlank_Click(object sender, EventArgs e)
         {
-            QRCodeGenerator qrGenerator = new QRCodeGenerator();
-            QRCodeData qrCodeData = qrGenerator.CreateQrCode(
-                this.textBox.Text, QRCodeGenerator.ECCLevel.Q);
-            QRCode qrCode = new QRCode(qrCodeData);
-            Bitmap qrCodeImage = qrCode.GetGraphic(8);
-            this.pictureBox.Image = qrCodeImage;
+            this.textBoxStringInput.Text =
+                Regex.Replace(this.textBoxStringInput.Text, "\\s{2,}", " ");
         }
 
-        private void ToolStripMenuItemSavePicture_Click(object sender, EventArgs e)
+        private void BtnReplaceAll_Click(object sender, EventArgs e)
         {
-            SaveFileDialog saveImageDialog = new SaveFileDialog();
-            saveImageDialog.Title = "图片保存";
-            saveImageDialog.Filter = "*.png|*.png";
+            this.textBoxStringInput.Text =
+                this.textBoxStringInput.Text.Replace(
+                    this.textBoxReplaceFrom.Text, this.textBoxRepalceTo.Text);
+        }
 
-            if (saveImageDialog.ShowDialog() == DialogResult.OK)
+        private void BtnReplaceLimitChar_Click(object sender, EventArgs e)
+        {
+            this.textBoxStringInput.Text =
+                GetFileOrFolder.ReplaceLimitedChar(this.textBoxStringInput.Text);
+        }
+
+        private void BtnStringToQRCode_Click(object sender, EventArgs e)
+        {
+            try
             {
-                this.pictureBox.Image.Save(saveImageDialog.FileName);
+                this.CheckBoxTopMostNoChecked?.Invoke();
+
+                QRCodeGenerator qrGenerator = new QRCodeGenerator();
+                QRCodeData qrCodeData = qrGenerator.CreateQrCode(
+                    this.textBoxStringInput.Text, QRCodeGenerator.ECCLevel.Q);
+                QRCode qrCode = new QRCode(qrCodeData);
+                Bitmap qrCodeImage = qrCode.GetGraphic(8);
+
+                QRCodeForm form = new QRCodeForm(qrCodeImage);
+                form.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                this.CheckBoxTopMostRestoreChecked?.Invoke();
             }
         }
     }

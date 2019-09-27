@@ -13,6 +13,7 @@ namespace MyTool
     public partial class MainForm : Form
     {
         private Action SaveControlConfigAction = null;
+        private bool CheckBoxTopMostRestoredState = true;
 
         public MainForm()
         {
@@ -41,7 +42,7 @@ namespace MyTool
 
             string[] pageNames = new string[] {
                 "对比重命名", "重命名",
-                "文本处理", "字符串处理", "其他", "文件匹配设置" };
+                "文本处理", "字符串或二维码处理", "其他", "文件匹配设置" };
 
             foreach (string pageName in pageNames)
             {
@@ -52,26 +53,32 @@ namespace MyTool
                 switch (pageName)
                 {
                     case "对比重命名":
-                        cl = new ComparedRenameControl();
+                        cl = new ComparedRenameControl(
+                            CheckBoxTopMost_NoChecked, CheckBoxTopMost_RestoreChecked);
                         this.SaveControlConfigAction +=
                             (cl as ComparedRenameControl).SaveConfig;
                         break;
                     case "重命名":
-                        cl = new FileOrFolderRenameControl();
+                        cl = new FileOrFolderRenameControl(
+                            CheckBoxTopMost_NoChecked, CheckBoxTopMost_RestoreChecked);
                         this.SaveControlConfigAction +=
                             (cl as FileOrFolderRenameControl).SaveConfig;
                         break;
                     case "文本处理":
-                        cl = new TextProcessControl();
+                        cl = new TextProcessControl(
+                            CheckBoxTopMost_NoChecked, CheckBoxTopMost_RestoreChecked);
                         break;
-                    case "字符串处理":
-                        cl = new QRCodeControl();
+                    case "字符串或二维码处理":
+                        cl = new QRCodeControl(
+                            CheckBoxTopMost_NoChecked, CheckBoxTopMost_RestoreChecked);
                         break;
                     case "其他":
-                        cl = new OtherToolControl();
+                        cl = new OtherToolControl(
+                            CheckBoxTopMost_NoChecked, CheckBoxTopMost_RestoreChecked);
                         break;
                     case "文件匹配设置":
-                        cl = new FileMatchSettingControl();
+                        cl = new FileMatchSettingControl(
+                            CheckBoxTopMost_NoChecked, CheckBoxTopMost_RestoreChecked);
                         break;
                     default:
                         break;
@@ -86,6 +93,8 @@ namespace MyTool
             }
 
             this.panelContainer.Controls.Add(tableControlEx);
+
+            this.TopMost = this.checkBoxTopMost.Checked;
         }
 
         private void TableControlEx_SelectedIndexChanged(object sender, EventArgs e)
@@ -128,6 +137,22 @@ namespace MyTool
         {
             Setting.GetInstance().settingData.fileMatchSetting.SelectedName =
                 this.comboBoxFileMatch.SelectedItem.ToString();
+        }
+
+        private void CheckBoxTopMost_CheckedChanged(object sender, EventArgs e)
+        {
+            this.TopMost = this.checkBoxTopMost.Checked;
+        }
+
+        private void CheckBoxTopMost_NoChecked()
+        {
+            CheckBoxTopMostRestoredState = this.checkBoxTopMost.Checked;
+            this.checkBoxTopMost.Checked = false;
+        }
+
+        private void CheckBoxTopMost_RestoreChecked()
+        {
+            this.checkBoxTopMost.Checked = CheckBoxTopMostRestoredState;
         }
     }
 }

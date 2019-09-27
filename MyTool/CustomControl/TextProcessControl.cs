@@ -20,9 +20,16 @@ namespace MyTool
 
         private string strLog = string.Empty;
 
-        public TextProcessControl()
+        private Action CheckBoxTopMostNoChecked = null;
+        private Action CheckBoxTopMostRestoreChecked = null;
+
+        public TextProcessControl(
+            Action CheckBoxTopMostNoChecked, Action CheckBoxTopMostRestoreChecked)
         {
             InitializeComponent();
+
+            this.CheckBoxTopMostNoChecked = CheckBoxTopMostNoChecked;
+            this.CheckBoxTopMostRestoreChecked = CheckBoxTopMostRestoreChecked;
         }
 
         private void TextProcessControl_Load(object sender, EventArgs e)
@@ -157,10 +164,14 @@ namespace MyTool
                         }
                         else
                         {
+                            this.CheckBoxTopMostNoChecked?.Invoke();
+
                             TextEncodingSelectForm form =
                                 new TextEncodingSelectForm(filePath, bytes);
                             form.textEncodingSelectResult = this.TextEncodingSelectResult;
                             form.ShowDialog();
+
+                            this.CheckBoxTopMostRestoreChecked?.Invoke();
 
                             textEncoding = this.textEncodingSelected;
                         }

@@ -65,38 +65,38 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="CustomControl\ComparedRenameControl.Designer.cs">
-	  <DependentUpon>ComparedRenameControl.cs</DependentUpon>
-	</Compile>
+      <DependentUpon>ComparedRenameControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="CustomControl\FileMatchSettingControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="CustomControl\FileMatchSettingControl.Designer.cs">
-	  <DependentUpon>FileMatchSettingControl.cs</DependentUpon>
-	</Compile>
+      <DependentUpon>FileMatchSettingControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="CustomControl\FileOrFolderRenameControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="CustomControl\FileOrFolderRenameControl.Designer.cs">
-	  <DependentUpon>FileOrFolderRenameControl.cs</DependentUpon>
-	</Compile>
+      <DependentUpon>FileOrFolderRenameControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="CustomControl\OtherToolControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="CustomControl\OtherToolControl.Designer.cs">
-	  <DependentUpon>OtherToolControl.cs</DependentUpon>
-	</Compile>
+      <DependentUpon>OtherToolControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="CustomControl\QRCodeControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="CustomControl\QRCodeControl.Designer.cs">
-	  <DependentUpon>QRCodeControl.cs</DependentUpon>
-	</Compile>
+      <DependentUpon>QRCodeControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="CustomControl\TextProcessControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="CustomControl\TextProcessControl.Designer.cs">
-	  <DependentUpon>TextProcessControl.cs</DependentUpon>
-	</Compile>
+      <DependentUpon>TextProcessControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="FileMatchRule.cs" />
     <Compile Include="FileMatchSetting.cs" />
     <Compile Include="FileOrFolderRenameSetting.cs" />
@@ -124,6 +124,12 @@
     <Compile Include="FormOrDialog\ManagerComboBoxItemDialog.Designer.cs">
       <DependentUpon>ManagerComboBoxItemDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormOrDialog\QRCodeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormOrDialog\QRCodeForm.Designer.cs">
+      <DependentUpon>QRCodeForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormOrDialog\SavePresetDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -149,22 +155,22 @@
     </Compile>
     <Compile Include="Win32API.cs" />
     <EmbeddedResource Include="CustomControl\ComparedRenameControl.resx">
-	  <DependentUpon>ComparedRenameControl.cs</DependentUpon>
+      <DependentUpon>ComparedRenameControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CustomControl\FileMatchSettingControl.resx">
-	  <DependentUpon>FileMatchSettingControl.cs</DependentUpon>
+      <DependentUpon>FileMatchSettingControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CustomControl\FileOrFolderRenameControl.resx">
-	  <DependentUpon>FileOrFolderRenameControl.cs</DependentUpon>
+      <DependentUpon>FileOrFolderRenameControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CustomControl\OtherToolControl.resx">
-	  <DependentUpon>OtherToolControl.cs</DependentUpon>
+      <DependentUpon>OtherToolControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CustomControl\QRCodeControl.resx">
       <DependentUpon>QRCodeControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CustomControl\TextProcessControl.resx">
-	  <DependentUpon>TextProcessControl.cs</DependentUpon>
+      <DependentUpon>TextProcessControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormOrDialog\AbortIgnoreDialog.resx">
       <DependentUpon>AbortIgnoreDialog.cs</DependentUpon>
@@ -177,6 +183,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormOrDialog\ManagerComboBoxItemDialog.resx">
       <DependentUpon>ManagerComboBoxItemDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormOrDialog\QRCodeForm.resx">
+      <DependentUpon>QRCodeForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormOrDialog\SavePresetDialog.resx">
       <DependentUpon>SavePresetDialog.cs</DependentUpon>

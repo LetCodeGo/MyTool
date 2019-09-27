@@ -21,9 +21,16 @@ namespace MyTool
         private Dictionary<string, int> addedSuffixDic = null;
         private ComparedRenameSetting comparedRenameSetting = null;
 
-        public ComparedRenameControl()
+        private Action CheckBoxTopMostNoChecked = null;
+        private Action CheckBoxTopMostRestoreChecked = null;
+
+        public ComparedRenameControl(
+            Action CheckBoxTopMostNoChecked, Action CheckBoxTopMostRestoreChecked)
         {
             InitializeComponent();
+
+            this.CheckBoxTopMostNoChecked = CheckBoxTopMostNoChecked;
+            this.CheckBoxTopMostRestoreChecked = CheckBoxTopMostRestoreChecked;
         }
 
         private void ComparedRenameControl_Load(object sender, EventArgs e)
@@ -68,12 +75,16 @@ namespace MyTool
 
         private void buttonSuffixManager_Click(object sender, EventArgs e)
         {
+            this.CheckBoxTopMostNoChecked?.Invoke();
+
             ManagerComboBoxItemDialog form =
                 new ManagerComboBoxItemDialog(
                     this.addedSuffixDic,
                     this.comboBoxAppendSuffix.SelectedIndex,
                     SetComboBoxCallBack);
             form.ShowDialog();
+
+            this.CheckBoxTopMostNoChecked?.Invoke();
         }
 
         private void SetComboBoxCallBack(

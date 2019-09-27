@@ -15,9 +15,16 @@ namespace MyTool
 {
     public partial class OtherToolControl : UserControl
     {
-        public OtherToolControl()
+        private Action CheckBoxTopMostNoChecked = null;
+        private Action CheckBoxTopMostRestoreChecked = null;
+
+        public OtherToolControl(
+            Action CheckBoxTopMostNoChecked, Action CheckBoxTopMostRestoreChecked)
         {
             InitializeComponent();
+
+            this.CheckBoxTopMostNoChecked = CheckBoxTopMostNoChecked;
+            this.CheckBoxTopMostRestoreChecked = CheckBoxTopMostRestoreChecked;
         }
 
         private void btnCompletedBluRayFolder_Click(object sender, EventArgs e)

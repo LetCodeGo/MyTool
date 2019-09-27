@@ -36,6 +36,7 @@
             this.checkBoxDragWithAppend = new System.Windows.Forms.CheckBox();
             this.comboBoxFileMatch = new System.Windows.Forms.ComboBox();
             this.labelFileMatch = new System.Windows.Forms.Label();
+            this.checkBoxTopMost = new System.Windows.Forms.CheckBox();
             this.panelContainer.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -49,7 +50,7 @@
             // 
             this.statusStrip.Location = new System.Drawing.Point(0, 557);
             this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Size = new System.Drawing.Size(984, 22);
+            this.statusStrip.Size = new System.Drawing.Size(1084, 22);
             this.statusStrip.TabIndex = 2;
             this.statusStrip.Text = "statusStrip1";
             // 
@@ -58,19 +59,20 @@
             this.panelContainer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelContainer.Controls.Add(this.checkBoxTopMost);
             this.panelContainer.Controls.Add(this.checkBoxDragWithAppend);
             this.panelContainer.Controls.Add(this.comboBoxFileMatch);
             this.panelContainer.Controls.Add(this.labelFileMatch);
             this.panelContainer.Location = new System.Drawing.Point(0, 0);
             this.panelContainer.Name = "panelContainer";
-            this.panelContainer.Size = new System.Drawing.Size(984, 554);
+            this.panelContainer.Size = new System.Drawing.Size(1084, 554);
             this.panelContainer.TabIndex = 3;
             // 
             // checkBoxDragWithAppend
             // 
             this.checkBoxDragWithAppend.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.checkBoxDragWithAppend.AutoSize = true;
-            this.checkBoxDragWithAppend.Location = new System.Drawing.Point(617, 6);
+            this.checkBoxDragWithAppend.Location = new System.Drawing.Point(696, 6);
             this.checkBoxDragWithAppend.Name = "checkBoxDragWithAppend";
             this.checkBoxDragWithAppend.Size = new System.Drawing.Size(84, 16);
             this.checkBoxDragWithAppend.TabIndex = 5;
@@ -83,9 +85,9 @@
             this.comboBoxFileMatch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxFileMatch.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxFileMatch.FormattingEnabled = true;
-            this.comboBoxFileMatch.Location = new System.Drawing.Point(771, 3);
+            this.comboBoxFileMatch.Location = new System.Drawing.Point(900, 3);
             this.comboBoxFileMatch.Name = "comboBoxFileMatch";
-            this.comboBoxFileMatch.Size = new System.Drawing.Size(210, 20);
+            this.comboBoxFileMatch.Size = new System.Drawing.Size(181, 20);
             this.comboBoxFileMatch.TabIndex = 2;
             this.comboBoxFileMatch.SelectedIndexChanged += new System.EventHandler(this.comboBoxFileMatch_SelectedIndexChanged);
             // 
@@ -93,20 +95,34 @@
             // 
             this.labelFileMatch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelFileMatch.AutoSize = true;
-            this.labelFileMatch.Location = new System.Drawing.Point(704, 7);
+            this.labelFileMatch.Location = new System.Drawing.Point(840, 7);
             this.labelFileMatch.Name = "labelFileMatch";
             this.labelFileMatch.Size = new System.Drawing.Size(65, 12);
             this.labelFileMatch.TabIndex = 1;
             this.labelFileMatch.Text = "文件匹配：";
             // 
+            // checkBoxTopMost
+            // 
+            this.checkBoxTopMost.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.checkBoxTopMost.AutoSize = true;
+            this.checkBoxTopMost.Checked = true;
+            this.checkBoxTopMost.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxTopMost.Location = new System.Drawing.Point(786, 6);
+            this.checkBoxTopMost.Name = "checkBoxTopMost";
+            this.checkBoxTopMost.Size = new System.Drawing.Size(48, 16);
+            this.checkBoxTopMost.TabIndex = 6;
+            this.checkBoxTopMost.Text = "置顶";
+            this.checkBoxTopMost.UseVisualStyleBackColor = true;
+            this.checkBoxTopMost.CheckedChanged += new System.EventHandler(this.CheckBoxTopMost_CheckedChanged);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(984, 579);
+            this.ClientSize = new System.Drawing.Size(1084, 579);
             this.Controls.Add(this.panelContainer);
             this.Controls.Add(this.statusStrip);
-            this.MinimumSize = new System.Drawing.Size(1000, 618);
+            this.MinimumSize = new System.Drawing.Size(1100, 618);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MyTool";
@@ -126,6 +142,7 @@
         private System.Windows.Forms.ComboBox comboBoxFileMatch;
         private System.Windows.Forms.Label labelFileMatch;
         private System.Windows.Forms.CheckBox checkBoxDragWithAppend;
+        private System.Windows.Forms.CheckBox checkBoxTopMost;
     }
 }
 

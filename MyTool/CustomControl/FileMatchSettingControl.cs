@@ -26,9 +26,16 @@ namespace MyTool
             List<string> itemsList, int selectedIndex);
         public SetFileMatchCombox setFileMatchCombox = null;
 
-        public FileMatchSettingControl()
+        private Action CheckBoxTopMostNoChecked = null;
+        private Action CheckBoxTopMostRestoreChecked = null;
+
+        public FileMatchSettingControl(
+            Action CheckBoxTopMostNoChecked, Action CheckBoxTopMostRestoreChecked)
         {
             InitializeComponent();
+
+            this.CheckBoxTopMostNoChecked = CheckBoxTopMostNoChecked;
+            this.CheckBoxTopMostRestoreChecked = CheckBoxTopMostRestoreChecked;
         }
 
         private void SettingControl_Load(object sender, EventArgs e)
@@ -128,12 +135,16 @@ namespace MyTool
         {
             if (this.listBoxPreset.SelectedIndex != -1)
             {
+                this.CheckBoxTopMostNoChecked?.Invoke();
+
                 SavePresetDialog savePresetForm =
                     new SavePresetDialog(
                         this.listBoxPreset.SelectedItem.ToString());
                 savePresetForm.savePresetFormStateAction =
                     this.SetSavePresetFormState;
                 savePresetForm.ShowDialog();
+
+                this.CheckBoxTopMostRestoreChecked?.Invoke();
 
                 SavePreset();
             }

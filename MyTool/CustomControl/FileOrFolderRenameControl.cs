@@ -26,9 +26,16 @@ namespace MyTool
         private int reNameRowCount = 0;
         private int pasteRowCount = 0;
 
-        public FileOrFolderRenameControl()
+        private Action CheckBoxTopMostNoChecked = null;
+        private Action CheckBoxTopMostRestoreChecked = null;
+
+        public FileOrFolderRenameControl(
+            Action CheckBoxTopMostNoChecked, Action CheckBoxTopMostRestoreChecked)
         {
             InitializeComponent();
+
+            this.CheckBoxTopMostNoChecked = CheckBoxTopMostNoChecked;
+            this.CheckBoxTopMostRestoreChecked = CheckBoxTopMostRestoreChecked;
         }
 
         private void FileOrFolderRenameControl_Load(object sender, EventArgs e)
@@ -266,6 +273,8 @@ namespace MyTool
                     break;
             }
 
+            this.CheckBoxTopMostNoChecked?.Invoke();
+
             ManagerComboBoxItemDialog form =
                 new ManagerComboBoxItemDialog(
                     itemDic,
@@ -273,6 +282,8 @@ namespace MyTool
                     SetComboBoxCallBack,
                     isLimitCharAllowed);
             form.ShowDialog();
+
+            this.CheckBoxTopMostRestoreChecked?.Invoke();
         }
 
         private void SetComboBoxCallBack(
@@ -524,11 +535,17 @@ namespace MyTool
                         }
                         catch (Exception ex)
                         {
+                            this.CheckBoxTopMostNoChecked?.Invoke();
+
                             AbortIgnoreDialog abortIgnoreDialog = new AbortIgnoreDialog(
                                 string.Format(
                                     "第 \"{0}\" 行正则表达式匹配错误，\n\n\"{1}\"",
                                     i + 1, ex.Message), "提示");
-                            if (abortIgnoreDialog.ShowDialog() == DialogResult.Abort)
+                            DialogResult dr = abortIgnoreDialog.ShowDialog();
+
+                            this.CheckBoxTopMostRestoreChecked?.Invoke();
+
+                            if (dr == DialogResult.Abort)
                                 return null;
                         }
                     }
