@@ -384,10 +384,5 @@ namespace MyTool
 
             return strContent;
         }
-
-        private void buttonCUE_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

@@ -355,7 +355,6 @@
             this.buttonCUE.TabIndex = 15;
             this.buttonCUE.Text = "CUE文件处理（仅处理 cue 文件）";
             this.buttonCUE.UseVisualStyleBackColor = true;
-            this.buttonCUE.Click += new System.EventHandler(this.buttonCUE_Click);
             this.buttonCUE.DragDrop += new System.Windows.Forms.DragEventHandler(this.buttonCUE_DragDrop);
             this.buttonCUE.DragEnter += new System.Windows.Forms.DragEventHandler(this.buttonCUE_DragEnter);
             // 
