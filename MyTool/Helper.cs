@@ -9,6 +9,16 @@ namespace MyTool
 {
     public class Helper
     {
+        public static string ReplaceInvalidChars(string str)
+        {
+            string temp = str;
+            foreach (char ch in Path.GetInvalidFileNameChars())
+            {
+                temp = temp.Replace(ch, '_');
+            }
+            return temp;
+        }
+
         /// <summary>
         /// 用记事本打开内容
         /// </summary>

@@ -433,49 +433,49 @@ namespace MyTool
                 string strlog = "";
 
                 #region 音频文件二级文件夹检测
-                string[] strFiles = e.Data.GetData("FileDrop") as string[];
-                foreach (string strPath in strFiles)
-                {
-                    string[] s1 = Directory.GetDirectories(strPath);
-                    foreach (string s2 in s1)
-                    {
-                        string[] s3 = Directory.GetDirectories(s2);
-                        if (s3.Length > 0) strlog += (s2 + '\n');
-                    }
-                }
-                #endregion
-
-                #region srt文件检测
                 //string[] strFiles = e.Data.GetData("FileDrop") as string[];
-                //Dictionary<string, string> moveDic = new Dictionary<string, string>();
-                //DateTime date = new DateTime(2020, 3, 10);
                 //foreach (string strPath in strFiles)
                 //{
-                //    string root = Directory.GetDirectoryRoot(strPath);
                 //    string[] s1 = Directory.GetDirectories(strPath);
                 //    foreach (string s2 in s1)
                 //    {
-                //        DirectoryInfo info = new DirectoryInfo(s2);
-                //        if (info.LastWriteTime <= date)
-                //        {
-                //            string[] s3 = Directory.GetFiles(s2, "*.srt", SearchOption.TopDirectoryOnly);
-                //            if (s3 != null && s3.Length > 0)
-                //            {
-                //                moveDic.Add(s2, Path.Combine(root, "move",
-                //                    Path.GetFileName(strPath), Path.GetFileName(s2)));
-                //            }
-                //        }
-
+                //        string[] s3 = Directory.GetDirectories(s2);
+                //        if (s3.Length > 0) strlog += (s2 + '\n');
                 //    }
                 //}
+                #endregion
 
-                //foreach (KeyValuePair<string, string> kv in moveDic)
-                //{
-                //    if (!Directory.Exists(Path.GetDirectoryName(kv.Value)))
-                //        Directory.CreateDirectory(Path.GetDirectoryName(kv.Value));
-                //    try { Directory.Move(kv.Key, kv.Value); }
-                //    catch { }
-                //}
+                #region srt文件检测
+                string[] strFiles = e.Data.GetData("FileDrop") as string[];
+                Dictionary<string, string> moveDic = new Dictionary<string, string>();
+                //DateTime date = new DateTime(2020, 5, 21);
+                foreach (string strPath in strFiles)
+                {
+                    string root = Directory.GetDirectoryRoot(strPath);
+                    string[] s1 = Directory.GetDirectories(strPath);
+                    foreach (string s2 in s1)
+                    {
+                        DirectoryInfo info = new DirectoryInfo(s2);
+                        //if (info.LastWriteTime <= date)
+                        {
+                            string[] s3 = Directory.GetFiles(s2, "*.srt", SearchOption.TopDirectoryOnly);
+                            if (s3 != null && s3.Length > 0)
+                            {
+                                moveDic.Add(s2, Path.Combine(root, "move",
+                                    Path.GetFileName(strPath), Path.GetFileName(s2)));
+                            }
+                        }
+
+                    }
+                }
+
+                foreach (KeyValuePair<string, string> kv in moveDic)
+                {
+                    if (!Directory.Exists(Path.GetDirectoryName(kv.Value)))
+                        Directory.CreateDirectory(Path.GetDirectoryName(kv.Value));
+                    try { Directory.Move(kv.Key, kv.Value); }
+                    catch { }
+                }
                 #endregion
 
                 Helper.OpenEdit(strlog);
@@ -738,6 +738,72 @@ namespace MyTool
             }
 
             Helper.OpenEdit(strLog);
+        }
+
+        private void GetAllThumbsDb(DirectoryInfo di, ref List<FileInfo> thumbsDbList)
+        {
+            try
+            {
+                thumbsDbList.AddRange(di.GetFiles("Thumbs.db", SearchOption.TopDirectoryOnly));
+            }
+            catch (System.UnauthorizedAccessException)
+            {
+                return;
+            }
+
+            DirectoryInfo[] childDis = di.GetDirectories();
+            foreach (DirectoryInfo childDi in childDis)
+            {
+                if ((childDi.Attributes & FileAttributes.System) != FileAttributes.System)
+                {
+                    GetAllThumbsDb(childDi, ref thumbsDbList);
+                }
+            }
+        }
+
+        private void btnThumbsDb_Click(object sender, EventArgs e)
+        {
+            DriveInfo[] drives = DriveInfo.GetDrives();
+            List<string> ml1 = new List<string>();
+            List<string> ml2 = new List<string>();
+
+            string moveDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "thumbs");
+            if (!Directory.Exists(moveDir)) Directory.CreateDirectory(moveDir);
+
+            foreach (DriveInfo drive in drives)
+            {
+                if (drive.Name.StartsWith("C:", StringComparison.OrdinalIgnoreCase)) continue;
+
+                List<FileInfo> thumbsDbList = new List<FileInfo>();
+                GetAllThumbsDb(drive.RootDirectory, ref thumbsDbList);
+
+                foreach (FileInfo thumbsDb in thumbsDbList)
+                {
+                    bool hidden = ((thumbsDb.Attributes & FileAttributes.Hidden) == FileAttributes.Hidden);
+                    bool size = (thumbsDb.Length >= 1024 * 1024);
+
+                    if (size && (!hidden))
+                    {
+                        ml2.Add(thumbsDb.FullName);
+                    }
+                    else
+                    {
+                        ml1.Add(thumbsDb.FullName);
+                        string name = Helper.ReplaceInvalidChars(thumbsDb.FullName);
+                        File.Move(thumbsDb.FullName, Path.Combine(moveDir, name));
+                    }
+                }
+            }
+
+            StringBuilder strLog = new StringBuilder();
+            strLog.AppendLine(string.Format("移动项：{0}", ml1.Count));
+            strLog.AppendLine(string.Join(Environment.NewLine, ml1));
+            strLog.AppendLine();
+            strLog.AppendLine(string.Format("未移动项：{0}", ml2.Count));
+            strLog.AppendLine(string.Join(Environment.NewLine, ml2));
+
+            LogForm lf = new LogForm(strLog.ToString());
+            lf.ShowDialog();
         }
     }
 }

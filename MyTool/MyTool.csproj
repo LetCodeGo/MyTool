@@ -238,6 +238,6 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>if "$(ConfigurationName)" == "Release" (
-xcopy "$(TargetPath)" "C:\Users\zhang\Desktop\tools\MyTool\" /y)</PostBuildEvent>
+xcopy "$(TargetPath)" "C:\Users\zhang\Documents\ZX\tools\MyTool\" /y)</PostBuildEvent>
   </PropertyGroup>
 </Project>

@@ -61,6 +61,7 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.richTextBoxCompare1 = new System.Windows.Forms.RichTextBox();
             this.richTextBoxCompare2 = new System.Windows.Forms.RichTextBox();
+            this.btnThumbsDb = new System.Windows.Forms.Button();
             this.groupBoxBackOrMove.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -74,9 +75,9 @@
             // btnCheckMediaInfo
             // 
             this.btnCheckMediaInfo.AllowDrop = true;
-            this.btnCheckMediaInfo.Location = new System.Drawing.Point(15, 432);
+            this.btnCheckMediaInfo.Location = new System.Drawing.Point(15, 421);
             this.btnCheckMediaInfo.Name = "btnCheckMediaInfo";
-            this.btnCheckMediaInfo.Size = new System.Drawing.Size(156, 40);
+            this.btnCheckMediaInfo.Size = new System.Drawing.Size(156, 29);
             this.btnCheckMediaInfo.TabIndex = 32;
             this.btnCheckMediaInfo.Text = "查看媒体文件信息";
             this.btnCheckMediaInfo.UseVisualStyleBackColor = true;
@@ -89,7 +90,7 @@
             this.btnCompletedBluRayFolder.AllowDrop = true;
             this.btnCompletedBluRayFolder.Location = new System.Drawing.Point(15, 386);
             this.btnCompletedBluRayFolder.Name = "btnCompletedBluRayFolder";
-            this.btnCompletedBluRayFolder.Size = new System.Drawing.Size(156, 40);
+            this.btnCompletedBluRayFolder.Size = new System.Drawing.Size(156, 29);
             this.btnCompletedBluRayFolder.TabIndex = 31;
             this.btnCompletedBluRayFolder.Text = "蓝光文件夹补全";
             this.btnCompletedBluRayFolder.UseVisualStyleBackColor = true;
@@ -181,9 +182,9 @@
             // btnOther
             // 
             this.btnOther.AllowDrop = true;
-            this.btnOther.Location = new System.Drawing.Point(15, 478);
+            this.btnOther.Location = new System.Drawing.Point(15, 456);
             this.btnOther.Name = "btnOther";
-            this.btnOther.Size = new System.Drawing.Size(156, 40);
+            this.btnOther.Size = new System.Drawing.Size(156, 29);
             this.btnOther.TabIndex = 34;
             this.btnOther.Text = "其他";
             this.btnOther.UseVisualStyleBackColor = true;
@@ -462,10 +463,22 @@
             this.richTextBoxCompare2.TabIndex = 0;
             this.richTextBoxCompare2.Text = "";
             // 
+            // btnThumbsDb
+            // 
+            this.btnThumbsDb.AllowDrop = true;
+            this.btnThumbsDb.Location = new System.Drawing.Point(15, 491);
+            this.btnThumbsDb.Name = "btnThumbsDb";
+            this.btnThumbsDb.Size = new System.Drawing.Size(156, 29);
+            this.btnThumbsDb.TabIndex = 38;
+            this.btnThumbsDb.Text = "Thumbs.db";
+            this.btnThumbsDb.UseVisualStyleBackColor = true;
+            this.btnThumbsDb.Click += new System.EventHandler(this.btnThumbsDb_Click);
+            // 
             // OtherToolControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnThumbsDb);
             this.Controls.Add(this.groupBoxTextCompare);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -525,5 +538,6 @@
         private System.Windows.Forms.RichTextBox richTextBoxCompare1;
         private System.Windows.Forms.RichTextBox richTextBoxCompare2;
         private System.Windows.Forms.Button btnTextCompare;
+        private System.Windows.Forms.Button btnThumbsDb;
     }
 }
